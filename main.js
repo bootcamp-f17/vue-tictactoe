@@ -4,6 +4,9 @@ var app = new Vue({
 
 	data: {
 		spaces: '',
+		symbols: ['X', 'O'],
+		turn: 0,
+		currentPlayer: ''
 
 	},
 	beforeMount(){
@@ -26,7 +29,10 @@ var app = new Vue({
 
 	takeSpace: function () {
 
-	alert('got it');
+	// alert('got it');
+		this.turn ++;
+		this.currentPlayer = this.symbols[this.turn % 2];
+		
 
 		}
 	}
@@ -35,47 +41,40 @@ var app = new Vue({
 
 
 
-	/*
+// 	function takeSpace() {
 
-	console.log(wins);
-	turn++;
-	var currentPlater = symbols[turn % 2];
-	this.innerHTML = currentPlater;
-	this.removeEventListener("click", takeSpace);
-	
-	for(var i=0; i<wins.length; i++){
-	if (checkForWin(wins[i])){
-		// alert("woo hoo!");
+//   turn++;
+//   var currentPlayer = symbols[turn % 2];
+//   this.innerHTML = currentPlayer;
+//   this.removeEventListener("click", takeSpace);  
 
-		// no more clicking!
-		for(var j=0; j<spaces.length; j++){
-			spaces[j].removeEventListener("click", takeSpace);
-		}
+//   for (var i = 0; i < wins.length; i++) {
+//     if (checkForWin(wins[i])) {
 
-		// Notify the player of success
-		notification.style.display = "block";
-		winnerMessage.innerHTML = "Yay! " + currentPlater + " won!";
-		}
-		else{
-			if(turn ==9){
-				notification.style.display = "block";
-				winnerMessage.innerHTML="bummer you both lose";
-			}
-		}
-		
-	}
-	
-}
+//       // No more clicking!
+//       for (var j = 0; j < spaces.length; j++) {
+//         spaces[j].removeEventListener("click", takeSpace);
+//       }
 
+//       // Notify the players
+//       notification.style.display = 'block';
+//       winnerMessage.innerHTML = "Yay! " + currentPlayer + " won!";
 
-function checkForWin(winArray){
+//     }
+//     else {
+//       if (turn == 9) {
+//         notification.style.display = "block";
+//         winnerMessage.innerHTML += "Bummer! It's a draw!";
+//       }
+//     }
+//   }
 
-	return	spaces[winArray[0]].innerHTML !== '' && 
-	spaces[winArray[0]].innerHTML === spaces[winArray[1]].innerHTML && 
-	spaces[winArray[0]].innerHTML === spaces[winArray[2]].innerHTML;
-	
-}
+// }
 
-
-	}
-*/
+// function checkForWin(winArray) {
+    
+//   return spaces[winArray[0]].innerHTML !== '' && 
+//     spaces[winArray[0]].innerHTML === spaces[winArray[1]].innerHTML && 
+//     spaces[winArray[0]].innerHTML === spaces[winArray[2]].innerHTML;
+  
+// }
