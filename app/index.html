@@ -12,42 +12,41 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="tictactoe container">
 
-  <div class="tictactoe container" id="app">
+  <h1>Tic-Tac-Toe</h1>
 
-    <h1>Tic-Tac-Toe</h1>
+  <div id="app" v-cloak>
 
-    <div class="row bg-info img-rounded" id="notification">
-      <p class="text-center" id="winnerMessage"></p>
+    <div class="row bg-info img-rounded" id="notification" v-if="showNotification">
+      <p class="text-center" id="winnerMessage">{{ winnerMessege }}</p>
     </div>
 
     <div id="gameBoard" >
       <div class="row">
-        <div v-on:click="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
-        <div v-on:click="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
-        <div v-on:click="takeSpace" class="col-xs-4 space line-bottom"></div>
+        <div v-on:click.once="play" class="col-xs-4 space line-right line-bottom">{{symbols['']}}</div>
+        <div v-on:click.once="play" class="col-xs-4 space line-right line-bottom">{{symbols['']}}</div>
+        <div v-on:click.once="play" class="col-xs-4 space line-bottom">{{symbols['']}}</div>
       </div>
       <div class="row">
-        <div v-on:click="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
-        <div v-on:click="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
-        <div v-on:click="takeSpace" class="col-xs-4 space line-bottom"></div>
+        <div v-on:click.once="play" class="col-xs-4 space line-right line-bottom">{{symbols['']}}</div>
+        <div v-on:click.once="play" class="col-xs-4 space line-right line-bottom">{{symbols['']}}</div>
+        <div v-on:click.once="play" class="col-xs-4 space line-bottom">{{symbols['']}}</div>
       </div>
       <div class="row">
-        <div v-on:click="takeSpace" class="col-xs-4 space line-right"></div>
-        <div v-on:click="takeSpace" class="col-xs-4 space line-right"></div>
-        <div v-on:click="takeSpace" class="col-xs-4 space"></div>
+        <div v-on:click.once="play" class="col-xs-4 space line-right">{{symbols['']}}</div>
+        <div v-on:click.once="play" class="col-xs-4 space line-right">{{symbols['']}}</div>
+        <div v-on:click.once="play" class="col-xs-4 space">{{symbols['']}}</div>
       </div>
     </div>
 
     <div class="row text-center">
-      <button v-on:click="startgame" class="btn btn-primary" id="restartButton">New Game</button>
+      <button v-on:click="startGame" class="btn btn-primary" id="restartButton">New Game</button>
     </div>
 
   </div>
 
   <script src="https://unpkg.com/vue"></script>
-  <script src="wins.js"></script>
   <script src="MainVue.js"></script>
 
 </body>

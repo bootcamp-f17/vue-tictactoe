@@ -6,10 +6,11 @@ var app = new Vue({
 		symbols: ['O', 'X'],
 		turn: 0,
 		restart: true,
-		winnerMessage: false,
-		notification: false,
-		spaces: '',
-		wins : [
+		winnerMessage: '',
+		showNotification: false,
+		spaceP1: [0,0,0,0,0,0,0,0,0],
+		spaceP2: [0,0,0,0,0,0,0,0,0]
+/*		wins : [
 		  [0,1,2],
 		  [3,4,5],
 		  [6,7,8],
@@ -18,66 +19,67 @@ var app = new Vue({
 		  [2,5,8],
 		  [0,4,8],
 		  [2,4,6]
-				]
+				]*/
 	},
 
 	methods: {
-		startgame : function() {
-			this.turn = 0;
-			this.winnerMessage = '';
-			this.notification = false;
+		startGame: function() {
+			location.reload();
+			//this.turn = 0;
+			//this.winnerMessage = '';
+			//this.showNotification = false;
 
-			for (var i = this.spaces.length - 1; i >= 0; i--) {
-				this.spaces[i] = '';
-				takespace();
-			}
+
 
 		},
-			takeSpace : function() {
-				
-				// var currentPlayer = '';
-				// this.turn++;
-				// currentPlayer = symbols[turn % 2];
 
-
-
-				// Need to use the {{ mustache }} to replace .innerhtml
-
-			this.turn++;
-			var currentPlayer = this.symbols[this.turn % 2];
-			this.innerHTML = currentPlayer;
-			removeEventListener("click", this.takeSpace);  
-
-			for (var i = 0; i < wins.length; i++) {
-			  	if (this.checkForWin(wins[i])) {
-
-			      // No more clicking!
-				for (var j = 0; j < this.spaces.length; j++) {
-				        this.spaces[j]("click", this.takeSpace);
-				    }
-
-			      // Notify the players
-			      notification.style.display = 'block';
-			      winnerMessage.innerHTML = "Yay! " + currentPlayer + " won!";
-
-			    }
-			    else {
-			      if (this.turn == 9) {
-			        notification.style.display = "block";
-			        winnerMessage.innerHTML += "Bummer! It's a draw!";
-			      }
-			    }
-			}
+		play: function(event) {
+			this.takeSpace(event);
+			this.checkForWin();
 		},
-		
 
-			checkForWin : function(wins) {
+		takeSpace: function(event) {
+        	if (this.turn % 2 === 0) {
+      			event.target.innerText = this.symbols[0];
+          		this.turn++;
+				this.spaceP1[event.target.className] = 1;
+         		//console.log(event.target);
 
-			return this.spaces[wins[0]] !== '' && 
-		    this.spaces[wins[0]] === this.spaces[wins[1]] && 
-		    this.spaces[wins[0]] === this.spaces[wins[2]];
+         	} else {
+         		event.target.innerText = this.symbols[1];
+            	this.turn++;
+				this.spaceP2[event.target.className] = 1;
+         		//console.log(event.target.className);
+	        }
+          },
+
+          checkForWin: function() {
+
+            var p1 = this.spaceP1;
+            var p2 = this.spaceP2;
+
+            <!-- if firstPlayer won -->
+            if(p1[0] + p1[1] + p1[2] === 3 || p1[3] + p1[4] + p1[5] === 3 || p1[6] + p1[7] + p1[8] === 3 || p1[0] + p1[3] + p1[6] === 3 || p1[1] + p1[4] + p1[7] === 3 || p1[2] + p1[5] + p1[8] === 3 || p1[0] + p1[4] + p1[8] === 3 || p1[2] + p1[4] + p1[6] === 3) {
+               this.showNotification = true;
+               this.winnerMessage === 'Player1 won!';
+               this.startGame();
+
+            <!-- if secondPlayer won -->
+          } else if (p2[0] + p2[1] + p2[2] === 3 || p2[3] + p2[4] + p2[5] === 3 || p2[6] + p2[7] + p2[8] === 3 || p2[0] + p2[3] + p2[6] === 3 || p2[1] + p2[4] + p2[7] === 3 || p2[2] + p2[5] + p2[8] === 3 || p2[0] + p2[4] + p2[8] === 3 || p2[2] + p2[4] + p2[6] === 3
+            ) {
+          	   this.showNotification = true;
+               this.winnerMessage === 'Player2 won!';
+               this.startGame();
+              <!-- if draw --> 
+            } else if (p1[0] + p1[1] + p1[2] + p1[3] + p1[4] + p1[5] + p1[6] + p1[7] + p1[8] + p2[0] + p2[1] + p2[2] + p2[3] + p2[4] + p2[5] + p2[6] + p2[7] + p2[8] === 9) {
+	    	   this.showNotification = true;
+               this.winnerMessage === 'Nobody won....';
+               this.startGame();
+            }
+          }
+
 
 			}
 
-     	}
+     	
 });
