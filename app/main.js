@@ -18,16 +18,6 @@ var tictactoe = new Vue({
 			alert("startGame");
 		},
 
-		checkForWin: function(winArray){
-			// return this.spaces[winArray[0]] !== '' && 
-	  //   this.spaces[winArray[0]] === this.spaces[winArray[1]] && 
-	  //   this.spaces[winArray[0]]=== this.spaces[winArray[2]];
-
-		}
-
-	},
-	computed: {
-
 
 
 		takeSpace: function(){
@@ -38,8 +28,18 @@ var tictactoe = new Vue({
 			this.innerHTML=this.currentPlayer;
 
 			//checkForWin;
+		},
+		checkForWin: function(winArray){
+			// return this.spaces[winArray[0]] !== '' && 
+	  //   this.spaces[winArray[0]] === this.spaces[winArray[1]] && 
+	  //   this.spaces[winArray[0]]=== this.spaces[winArray[2]];
+
 		}
 
+	},
+	computed: {
+
+		
 	}
 
 });
