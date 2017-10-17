@@ -7,13 +7,38 @@ var tictactoe = new Vue({
 
 		turn: 0,
 		currentPlayer: "",
-		symbols : ["X","O"]
-
+		symbols : ["X","O"],
+		item: "",
+		winnerMessage:"",
+		spaces:[
+			{
+				space: 1
+			},{
+				space: 2
+			},{
+				space: 3
+			},{
+				space: 4
+			},{
+				space: 5
+			},{
+				space: 6
+			},{
+				space: 7
+			},{
+				space: 8
+			},{
+				space: 9
+			}
+			]
 
 	},
 
 	methods: {
 		startGame: function(){
+
+			this.turn = 0;
+
 
 			alert("startGame");
 		},
@@ -24,8 +49,9 @@ var tictactoe = new Vue({
 		
 			this.turn++;
 			this.currentPlayer=this.symbols[this.turn%2];
+			console.log(this.id);
 			console.log(this.currentPlayer);
-			this.innerHTML=this.currentPlayer;
+			this.item.id=this.currentPlayer;
 
 			//checkForWin;
 		},
@@ -39,7 +65,7 @@ var tictactoe = new Vue({
 	},
 	computed: {
 
-		
+
 	}
 
 });

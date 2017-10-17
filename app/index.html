@@ -23,22 +23,23 @@
       <div class="row bg-info img-rounded" id="notification">
         <p class="text-center" id="winnerMessage"></p>
       </div>
-
-      <div id="gameBoard">
-        <div class="row">
-          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
-          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
-          <div v-on:click.once="takeSpace" class="col-xs-4 space line-bottom"></div>
-        </div>
-        <div class="row">
-          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
-          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
-          <div v-on:click.once="takeSpace" class="col-xs-4 space line-bottom"></div>
-        </div>
-        <div class="row">
-          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right"></div>
-          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right"></div>
-          <div v-on:click.once="takeSpace" class="col-xs-4 space"></div>
+      <div >
+        <div id="gameBoard" >
+          <div class="row" >
+            <div is="space" v-on:click.once="takeSpace" v-bind:key="item.id" class="col-xs-4 spaces line-right line-bottom">{{ space.currentPlayer}}</div>
+            <div is="space" v-on:click.once="takeSpace" class="col-xs-4 spaces line-right line-bottom">{{ space.currentPlayer}}</div>
+            <div  is="space"v-on:click.once="takeSpace" class="col-xs-4 spaces line-bottom">{{ space.currentPlayer}}</div>
+          </div>
+          <div class="row">
+            <div is="space" v-on:click.once="takeSpace" class="col-xs-4 spaces line-right line-bottom">{{ space.currentPlayer}}</div>
+            <div  is="space"v-on:click.once="takeSpace" class="col-xs-4 spaces line-right line-bottom">{{ space.currentPlayer}}</div>
+            <div is="space" v-on:click.once="takeSpace" class="col-xs-4 spaces line-bottom">{{ space.currentPlayer}}</div>
+          </div>
+          <div class="row">
+            <div is="space" v-on:click.once="takeSpace" class="col-xs-4 spaces line-right">{{ space.currentPlayer}}</div>
+            <div is="space" v-on:click.once="takeSpace" class="col-xs-4 spaces line-right">{{ space.currentPlayer}}</div>
+            <div is="space" v-on:click.once="takeSpace" class="col-xs-4 spaces" >{{ space.currentPlayer}}</div>
+          </div>
         </div>
       </div>
 
