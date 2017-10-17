@@ -14,38 +14,41 @@
 </head>
 <body>
 
-  <div class="tictactoe container">
+  <div id="tictactoe">
 
-    <h1>Tic-Tac-Toe</h1>
+    <div class="tictactoe container">
 
-    <div class="row bg-info img-rounded" id="notification">
-      <p class="text-center" id="winnerMessage"></p>
-    </div>
+      <h1>Tic-Tac-Toe</h1>
 
-    <div id="gameBoard">
-      <div class="row">
-        <div class="col-xs-4 space line-right line-bottom"></div>
-        <div class="col-xs-4 space line-right line-bottom"></div>
-        <div class="col-xs-4 space line-bottom"></div>
+      <div class="row bg-info img-rounded" id="notification">
+        <p class="text-center" id="winnerMessage"></p>
       </div>
-      <div class="row">
-        <div class="col-xs-4 space line-right line-bottom"></div>
-        <div class="col-xs-4 space line-right line-bottom"></div>
-        <div class="col-xs-4 space line-bottom"></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 space line-right"></div>
-        <div class="col-xs-4 space line-right"></div>
-        <div class="col-xs-4 space"></div>
-      </div>
-    </div>
 
-    <div class="row text-center">
-      <button class="btn btn-primary" id="restartButton">New Game</button>
-    </div>
+      <div id="gameBoard">
+        <div class="row">
+          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
+          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
+          <div v-on:click.once="takeSpace" class="col-xs-4 space line-bottom"></div>
+        </div>
+        <div class="row">
+          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
+          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right line-bottom"></div>
+          <div v-on:click.once="takeSpace" class="col-xs-4 space line-bottom"></div>
+        </div>
+        <div class="row">
+          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right"></div>
+          <div v-on:click.once="takeSpace" class="col-xs-4 space line-right"></div>
+          <div v-on:click.once="takeSpace" class="col-xs-4 space"></div>
+        </div>
+      </div>
 
+      <div class="row text-center">
+        <button v-on:click="startGame" class="btn btn-primary" id="restartButton">New Game</button>
+      </div>
+
+    </div>
   </div>
-
+  <script src="https://unpkg.com/vue"></script>
   <script src="wins.js"></script>
   <script src="main.js"></script>
 
