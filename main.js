@@ -1,80 +1,76 @@
-var app = new Vue({
-
-	el:'#tic',
-
-	data: {
-		spaces: '',
-		symbols: ['X', 'O'],
-		turn: 0,
-		currentPlayer: ''
-
-	},
-	beforeMount(){
-		this.startGame();
-	},
-
+Vue.component('space', {
+	template: "<div v-on:click='callSquare'>{{display}}</div>",
 	methods: {
-
-
-	startGame: function(){
-
-	for(var i=0; i<this.spaces.length; i++){
-		this.spaces[i].innerHTML = '';
-		// spaces[i].addEventListener("click", takeSpace);
-	
+		callSquare: function(){
+			if(this.display===''){
+				// this is "I have not been clicked yet"
+				
+				this.display=this.symbol;
+				this.$emit('new', this.gridLocation); // gridLocation --> where it was clicked
+				console.log("this is the id of the square that was clicked: " + this.gridLocation);
+			}
+			else{
+				// "I have already been clicked"
+				
+				this.$emit('repeat');
+			}
 		}
-
 	},
+	props:['symbol', 'gridLocation'],
+	data: function(){
+		return{
+			display:'',
 
+			space0: false,	// top left
+			space1: false,	// top center
+			space2: false,	// top right
 
-	takeSpace: function () {
+			space3: false,	// middle left	
+			space4: false,	// middle center
+			space5: false,	// middle right
 
-	// alert('got it');
-		this.turn ++;
-		this.currentPlayer = this.symbols[this.turn % 2];
-		
-
+			space6: false,	// middle left
+			space7: false,	// middle center
+			space8: false	// middle right
+			
 		}
+		
 	}
+
 });
 
+var app = new Vue({
+
+  el: '#app',
+  data: {
+  	markers: ['X', 'O'],
+  	turn: 0,
+  	gridLocation: ''
+  	
+
+  },
+  methods: {
+  	newClick: function( test ){
+  		
+  		this.gridLocation=test;
+  		
+  		this.turn++;
+  		this.checkForWin();
+  		this.checkForDraw();
+  	}, 
+  	repeatClick: function(){
+  		console.log('already clicked');
+  	},
+  	checkForWin: function(){
+  		// alert('check for win');
+
+  	},
+  	checkForDraw: function() {
+		// alert('check for draw');  		
+
+  	}
+  }  
 
 
 
-// 	function takeSpace() {
-
-//   turn++;
-//   var currentPlayer = symbols[turn % 2];
-//   this.innerHTML = currentPlayer;
-//   this.removeEventListener("click", takeSpace);  
-
-//   for (var i = 0; i < wins.length; i++) {
-//     if (checkForWin(wins[i])) {
-
-//       // No more clicking!
-//       for (var j = 0; j < spaces.length; j++) {
-//         spaces[j].removeEventListener("click", takeSpace);
-//       }
-
-//       // Notify the players
-//       notification.style.display = 'block';
-//       winnerMessage.innerHTML = "Yay! " + currentPlayer + " won!";
-
-//     }
-//     else {
-//       if (turn == 9) {
-//         notification.style.display = "block";
-//         winnerMessage.innerHTML += "Bummer! It's a draw!";
-//       }
-//     }
-//   }
-
-// }
-
-// function checkForWin(winArray) {
-    
-//   return spaces[winArray[0]].innerHTML !== '' && 
-//     spaces[winArray[0]].innerHTML === spaces[winArray[1]].innerHTML && 
-//     spaces[winArray[0]].innerHTML === spaces[winArray[2]].innerHTML;
-  
-// }
+});

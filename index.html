@@ -4,54 +4,49 @@
   <title>Tic-Tac-Toe</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  
   <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
-  
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="tictactoe container" id="tic">
+  <div id="app" class="tictactoe container">
 
     <h1>Tic-Tac-Toe</h1>
 
-	    <div class="row bg-info img-rounded" id="notification">
-	      <p class="text-center" id="winnerMessage"></p>
-	    </div>
+    <div class="row bg-info img-rounded" id="notification">
+      <p class="text-center" id="winnerMessage"></p>
+    </div>
 
+    <div id="gameBoard">
+      <div class="row">
+        <div is="space" grid-location="1" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
+        <div is="space" grid-location="2" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
+        <div is="space" grid-location="3" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-bottom"></div>
+      </div>
+      <div class="row">
+        <div is="space" grid-location="4" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
+        <div is="space" grid-location="5" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
+        <div is="space" grid-location="6" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-bottom"></div>
+      </div>
+      <div class="row">
+        <div is="space" grid-location="7" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right"></div>
+        <div is="space" grid-location="8" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right"></div>
+        <div is="space" grid-location="9" v-bind:symbol="markers[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space"></div>
+      </div>
+    </div>
 
-	    <div id="gameBoard">
-	      <div class="row">
-	        <div class="col-xs-4 space line-right line-bottom" v-on:click="takeSpace"></div>
-	        <div class="col-xs-4 space line-right line-bottom" v-on:click="takeSpace"></div>
-	        <div class="col-xs-4 space line-bottom" v-on:click="takeSpace"></div>
-	      </div>
-	      <div class="row">
-	        <div class="col-xs-4 space line-right line-bottom" v-on:click="takeSpace"></div>
-	        <div class="col-xs-4 space line-right line-bottom" v-on:click="takeSpace"></div>
-	        <div class="col-xs-4 space line-bottom" v-on:click="takeSpace"></div>
-	      </div>
-	      <div class="row">
-	        <div class="col-xs-4 space line-right" v-on:click="takeSpace"></div>
-	        <div class="col-xs-4 space line-right" v-on:click="takeSpace"></div>
-	        <div class="col-xs-4 space" v-on:click="takeSpace"></div>
-	      </div>
-	    </div>
-
-
-	    <div class="row text-center">
-	      <button class="btn btn-primary" id="restartButton">New Game</button>
-	    </div>
+    <div class="row text-center">
+      <button class="btn btn-primary" id="restartButton">New Game</button>
+    </div>
 
   </div>
 
- <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue"></script>
   <script src="main.js"></script>
 
 </body>
