@@ -12,7 +12,7 @@ Vue.component('space', {
       if (this.display === '') {
         // New square
         this.display = this.symbol;
-        this.$emit('new',this._uid);
+        this.$emit('new',this._uid,this.symbol);
         console.log(this._uid);
       }
       else {
@@ -37,11 +37,13 @@ var app = new Vue({
   },
   methods: {
 
-    newClick: function(id) {
+    newClick: function(id,symbol) {
       console.log("newClick: ",id);
+      console.log("newClick: ",symbol);
       this.turn++;
-      this.id=id;
-      this.checkForWin();
+      // this.id=id;
+
+      this.checkForWin(id,symbol);
       this.checkForDraw();
     },
 
@@ -49,11 +51,12 @@ var app = new Vue({
       console.log("clicked a space again");
     },
 
-    checkForWin: function() {
+    checkForWin: function(id,symbol) {
       
-      if(this.symbols[0] === 'X'){
-        console.log("In the Loop: ",this._uid);
-        this.playerXSequence.push(this._uid);
+      if(symbol === 'X'){
+        console.log("In the Loop: ",id);
+        this.playerXSequence.push(id);
+        console.log(this.playerXSequence);
       }
     },
 
