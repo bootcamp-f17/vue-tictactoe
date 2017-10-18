@@ -2,20 +2,23 @@ Vue.component('space', {
   template: '<div v-on:click="callSquare()">{{ display }}</div>',
   data: function() {
     return {
-      display: '',
+      display: ''
+
     };
   },
-  props: [ 'symbol' ],
+  props: [ 'symbol','product' ],
   methods: {
     callSquare: function() {
       if (this.display === '') {
         // New square
         this.display = this.symbol;
-        this.$emit('new');
+        this.$emit('new',this._uid);
+        console.log(this._uid);
       }
       else {
         // I have been clicked already
         this.$emit('repeat');
+
       }
     }
   }
@@ -26,13 +29,18 @@ var app = new Vue({
   el: '#app',
   data: {
     symbols: ['X', 'O'],
-    turn: 0
+    turn: 0,
+    playerXSequence: [],
+    playerYSequence:[],
+    id:0
+    
   },
   methods: {
 
-    newClick: function() {
-      console.log("clicked a new space");
+    newClick: function(id) {
+      console.log("newClick: ",id);
       this.turn++;
+      this.id=id;
       this.checkForWin();
       this.checkForDraw();
     },
@@ -42,11 +50,15 @@ var app = new Vue({
     },
 
     checkForWin: function() {
-      alert("checking for win");
+      
+      if(this.symbols[0] === 'X'){
+        console.log("In the Loop: ",this._uid);
+        this.playerXSequence.push(this._uid);
+      }
     },
 
     checkForDraw: function() {
-      alert("checking for draw");
+     // console.log("checking for draw");
     }
 
 
