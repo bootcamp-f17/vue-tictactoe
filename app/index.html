@@ -14,39 +14,40 @@
 </head>
 <body>
 
-  <div id="app" class="tictactoe container">
+  <div id="app" class="tictactoe container" v-cloak>
 
     <h1>Tic-Tac-Toe</h1>
 
-    <div class="row bg-info img-rounded" id="notification">
-      <p class="text-center" id="winnerMessage"></p>
+    <div class="row bg-info img-rounded" v-if="showNotification">
+      <p class="text-center" id="winnerMessage">{{ winnerMessage }}</p>
     </div>
 
     <div id="gameBoard">
       <div class="row">
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-bottom"></div>
+        <div is="space" location="0" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
+        <div is="space" location="1" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
+        <div is="space" location="2" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-bottom"></div>
       </div>
       <div class="row">
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-bottom"></div>
+        <div is="space" location="3" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
+        <div is="space" location="4" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right line-bottom"></div>
+        <div is="space" location="5" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-bottom"></div>
       </div>
       <div class="row">
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right"></div>
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right"></div>
-        <div is="space" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space"></div>
+        <div is="space" location="6" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right"></div>
+        <div is="space" location="7" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space line-right"></div>
+        <div is="space" location="8" v-bind:symbol="symbols[turn%2]" v-on:new="newClick" v-on:repeat="repeatClick" class="col-xs-4 space"></div>
       </div>
     </div>
 
     <div class="row text-center">
-      <button class="btn btn-primary" id="restartButton">New Game</button>
+      <button class="btn btn-primary" v-on:click="resetGame">New Game</button>
     </div>
 
   </div>
 
   <script src="https://unpkg.com/vue"></script>
+  <script src="wins.js"></script>
   <script src="main.js"></script>
 
 </body>
